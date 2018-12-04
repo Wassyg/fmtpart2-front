@@ -1,0 +1,26 @@
+/* ---bouton qui ouvre ou ferme la filtreBar--- */
+
+.btn-filtre{
+padding : 0px !important;
+height: 130px;
+background-color: #ecf0f1;
+display:flex;
+flex-direction: column;
+}
+.row-button{
+  background-color: #ecf0f1 !important;
+  color: #8e44ad !important;
+}
+
+.filtreStyleTexte{
+  font-size: 10px;
+  margin-bottom: 2px !important;
+  margin-top: 2px !important;
+}
+
+.gallery-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
