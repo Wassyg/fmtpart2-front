@@ -6,7 +6,6 @@ import {connect} from 'react-redux';
 import CardTatoo from '../Components/CardTatoo.js';
 import TattooArtistCardModal from '../Components/TattooArtistCardModal.js';
 import AuthForm from '../Components/AuthForm.js';
-import url from '../config.js';
 
 //Import des librairies ou composants de style
 import '../Stylesheets/TattooModal.css';
@@ -20,15 +19,15 @@ import { Modal } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
-function checkAndAdd(idTattoo, array) {
-  var found = array.some(function (el) {
-    console.log('el', idTattoo);
-    return el.favTattooID === idTattoo;
-  });
-  return found
-}
+// function checkAndAdd(idTattoo, array) {
+//   var found = array.some(function (el) {
+//     console.log('el', idTattoo);
+//     return el.favTattooID === idTattoo;
+//   });
+//   return found
+// }
 
-//// Composant modal qui affiche le tatouage agrandi, les infos tatoueurs et la gallerie des tatouages du tatoueur en question ////
+//// Composant modal qui affiche le tatouage agrandi, les infos tatoueurs et la galerie des tatouages du tatoueur en question ////
 
 class TattooModal extends Component {
   constructor(props) {
@@ -70,7 +69,7 @@ class TattooModal extends Component {
     }else{
       var ctx = this;
       if(this.state.classLike === false){
-        fetch('https://glacial-sierra-22438.herokuapp.com/userliketattoo', {
+        fetch('http://localhost:3000/userliketattoo', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favTattooPhotoLink='+ctx.props.dataModal.favTattooPhotoLink+'&favTattooStyleList1='+ctx.props.dataModal.favTattooStyleList[0]+'&favTattooStyleList2='+ctx.props.dataModal.favTattooStyleList[1]+'&favTattooStyleList3='+ctx.props.dataModal.favTattooStyleList[2]+'&favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId+'&favTattooID='+ctx.props.dataModal.favTattooID
@@ -78,7 +77,7 @@ class TattooModal extends Component {
         this.setState({classLike: !this.state.classLike});
 
       } else if(this.state.classLike === true){
-        fetch('https://glacial-sierra-22438.herokuapp.com/userdisliketattoo', {
+        fetch('http://localhost:3000/userdisliketattoo', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favTattooID='+ctx.props.dataModal.favTattooID+'&user_id='+ctx.props.userId
@@ -92,7 +91,7 @@ class TattooModal extends Component {
     var ctx = this;
     // if(this.props.userId){
     //   console.log("didupdate",this.props.dataModal);
-    //   fetch('https://glacial-sierra-22438.herokuapp.com/user?user_id='+this.props.userId)
+    //   fetch('http://localhost:3000/user?user_id='+this.props.userId)
     //   .then(function(response) {
     //    return response.json();
     //   })
@@ -111,7 +110,7 @@ class TattooModal extends Component {
         visible : true,
       })
       // Récupération de la liste des tatouages du tatoueur en question
-      fetch('https://glacial-sierra-22438.herokuapp.com/tattoosfromartist?artistID='+ctx.props.dataModal.favArtistID)
+      fetch('http://localhost:3000/tattoosfromartist?artistID='+ctx.props.dataModal.favArtistID)
       .then(function(response) {
        return response.json();
       })

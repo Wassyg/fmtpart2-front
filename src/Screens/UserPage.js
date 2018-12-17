@@ -2,8 +2,6 @@ import React, {Component} from 'react'
 
 // import des composants appelés
 import NavBarEspacePerso from '../Components/NavBarEspacePerso.js'
-import FavTattoosProfile from '../Components/FavTattoosProfile.js'
-import FavArtistsProfile from '../Components/FavArtistsProfile.js'
 import TabsProfile from '../Components/TabsProfile.js'
 
 import {connect} from 'react-redux';

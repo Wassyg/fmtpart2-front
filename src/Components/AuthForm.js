@@ -2,13 +2,10 @@ import React from 'react';
 
 //Import des librairies ou composants de style
 import 'bootstrap/dist/css/bootstrap.css';
-import { Col, Row, Button, Form, FormGroup, Label, Input, FormText, Modal, ModalHeader, ModalBody, ModalFooter, Alert } from 'reactstrap';
+import { Col, Row, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import '../Stylesheets/SignUpAndInForm.css';
-import url from '../config.js';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {  } from '@fortawesome/free-solid-svg-icons'
-import { faUser } from '@fortawesome/free-regular-svg-icons'
 
 import {connect} from 'react-redux';
 
@@ -62,7 +59,7 @@ class AuthForm extends React.Component {
   //Method to create user in database
   handleSignUp(event) {
     var ctx = this;
-    fetch('https://glacial-sierra-22438.herokuapp.com'+'/signup', {
+    fetch('http://localhost:3000/signup', {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: "userFirstName=" + ctx.state.firstName + "&userLastName=" + ctx.state.lastName + "&userEmail=" + ctx.state.signUpEmail + "&userPassword=" + ctx.state.signUpPassword
@@ -92,7 +89,7 @@ class AuthForm extends React.Component {
   //Method to check if user is in database
   handleSignIn(event) {
     var ctx = this;
-    fetch('https://glacial-sierra-22438.herokuapp.com'+'/signin', {
+    fetch('http://localhost:3000/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

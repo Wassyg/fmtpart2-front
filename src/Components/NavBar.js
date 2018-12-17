@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
+import { ScrollTo } from "react-scroll-to";
 
 //Import des composants externes
 import AuthForm from '../Components/AuthForm.js';
@@ -45,12 +46,12 @@ class NavbarPage extends Component {
   }
 
   handleClick = () => {
-    if(this.props.user._id == null){
+    // if(this.props.user._id == null){
       this.setState({
         clickOnForm: !this.state.clickOnForm,
         routeUserPage : '/',
       });
-    }
+    // }
     // else if (this.props.user._id){
     //   this.setState({
     //     routeUserPage : '/UserPage'
@@ -71,7 +72,7 @@ class NavbarPage extends Component {
     return (
       <Navbar className={classNavbar.join(" ")}  dark expand="md">
         <NavbarBrand>
-          <strong className={classLogoNav.join(" ")}>Find my Tattoo</strong>
+          <Link className={classLogoNav.join(" ")} to={'/'}> <strong>Find my Tattoo</strong> </Link> 
         </NavbarBrand>
         <Button outline color="warning" onClick={()=>this.toggleAuth()}><FontAwesomeIcon icon={faUser} className="fa-lg"/></Button>
         <AuthForm clickOnForm={this.state.clickOnForm}/>
@@ -85,10 +86,15 @@ class NavbarPage extends Component {
 
           <NavbarNav right>
             <NavItem>
-              <Link className={classNavBtn.join(" ")} to={'/'}>Galerie</Link>
+            <ScrollTo>
+                {({ scrollTo }) => (
+                  <Link className={classNavBtn.join(" ")} to={'/'} onClick={() => scrollTo({y: 830, smooth: true})}>Galerie</Link>
+                )}
+            </ScrollTo>
+              
             </NavItem>
             <NavItem>
-              <Link className={classNavBtn.join(" ")} to={this.props.user._id ?"/UserPage#top" :"/"} onClick={()=>this.handleClick()}>MoodBoard</Link>
+              <Link className={classNavBtn.join(" ")} to={this.props.user._id ?"/UserPage#top" :"/"} onClick={()=>this.handleClick()}>Espace Perso</Link>
             </NavItem>
 
           </NavbarNav>

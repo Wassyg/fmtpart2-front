@@ -1,10 +1,8 @@
 import React, {Component} from 'react';
 import { ScrollTo } from "react-scroll-to";
 
-import AuthForm from '../Components/AuthForm.js';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronCircleDown } from '@fortawesome/free-solid-svg-icons';
 
 import '../Stylesheets/HomePage.css';
 
@@ -24,9 +22,10 @@ class HomePage extends Component {
 
       <ScrollTo>
        {({ scrollTo }) => (
-         <a href="" onClick={() => scrollTo({y: 830, smooth: true})}><FontAwesomeIcon icon={faChevronCircleDown} className="scrollTo"/></a>
+         <a href="/#buttonForGallery" onClick={() => scrollTo({y: 830, smooth: true})}><FontAwesomeIcon id="buttonForGallery" icon={faChevronCircleDown} className="scrollTo"/></a>
        )}
       </ScrollTo>
+      {/* <Link to={'/#buttonForGallery'}> <FontAwesomeIcon icon={faChevronCircleDown} id="buttonForGallery" className="scrollTo"/> </Link> */}
     </div>
   )}
 }

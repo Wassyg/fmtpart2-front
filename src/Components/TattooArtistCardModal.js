@@ -9,7 +9,6 @@ import { Card, CardText, CardBody, CardTitle, CardSubtitle, Button, Row, Col, Ba
 
 import ProjectForm from '../Components/ProjectForm.js'
 import AuthForm from '../Components/AuthForm.js';
-import url from '../config.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faMapMarkerAlt, faHeart, faEnvelope, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
@@ -30,8 +29,8 @@ class TattooArtistCardModal extends Component {
       artistStyleList3: this.props.artistStyleList3,
       artistDescription:this.props.artistDescription,
       artistPhotoLink:this.props.artistPhotoLink,
-      clickOnForm: false
-      // artistsList: []
+      clickOnForm: false,
+      artistsList: []
     }
   }
   handleClickSend(props){
@@ -55,19 +54,20 @@ class TattooArtistCardModal extends Component {
 //grace au reducer récupérer l'ID de l'artiste pour fetcher ses informations
   componentDidMount(){
     var ctx = this;
-    fetch('https://glacial-sierra-22438.herokuapp.com/artist?artist_id='+ this.props.dataModal.favArtistID)
+    fetch('http://localhost:3000/artist?artist_id='+ this.props.dataModal.favArtistID)
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
+      console.log("TattooArstistCardModal data de l'artist", data.result);
        ctx.setState({
          clickToSend: false,
          artistNickname: data.result.artistNickname,
          artistCompanyName: data.result.artistCompanyName,
          artistAddress: data.result.artistAddress,
-         artistStyleList1: data.result.artistStyleList[0],
-         artistStyleList2: data.result.artistStyleList[1],
-         artistStyleList3: data.result.artistStyleList[2],
+         artistStyleList1: data.result.artistStyleList[0].style1,
+         artistStyleList2: data.result.artistStyleList[0].style2,
+         artistStyleList3: data.result.artistStyleList[0].style3,
          artistDescription: data.result.artistDescription,
          artistPhotoLink: data.result.artistPhotoLink,
          artistNote: data.result.artistNote
@@ -83,7 +83,7 @@ class TattooArtistCardModal extends Component {
       console.log(this.props.dataModal.clickOnTattoo);
       console.log("update");
       var ctx = this;
-      fetch('https://glacial-sierra-22438.herokuapp.com/artist?artist_id='+ this.props.dataModal.favArtistID)
+      fetch('http://localhost:3000/artist?artist_id='+ this.props.dataModal.favArtistID)
       .then(function(response) {
         return response.json();
       })
@@ -93,9 +93,9 @@ class TattooArtistCardModal extends Component {
            artistNickname: data.result.artistNickname,
            artistCompanyName: data.result.artistCompanyName,
            artistAddress: data.result.artistAddress,
-           artistStyleList1: data.result.artistStyleList[0],
-           artistStyleList2: data.result.artistStyleList[1],
-           artistStyleList3: data.result.artistStyleList[2],
+           artistStyleList1: data.result.artistStyleList.style1,
+           artistStyleList2: data.result.artistStyleList.style2,
+           artistStyleList3: data.result.artistStyleList.style3,
            artistDescription: data.result.artistDescription,
            artistPhotoLink: data.result.artistPhotoLink,
            artistNote: data.result.artistNote
@@ -116,13 +116,13 @@ class TattooArtistCardModal extends Component {
     }else{
       var ctx = this;
       if(this.state.classLike === false){
-        fetch('https://glacial-sierra-22438.herokuapp.com/userlikeartist', {
+        fetch('http://localhost:3000/userlikeartist', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favArtistNickname='+ctx.state.artistNickname+'&favArtistCompanyName='+ctx.state.artistCompanyName+'&favArtistAddress='+ctx.state.artistAddress+'&favArtistDescription='+ctx.state.artistDescription+'&favArtistPhotoLink='+ctx.state.artistPhotoLink+'&favArtistStyleList1='+ctx.state.artistStyleList1+'&favArtistStyleList2='+ctx.state.artistStyleList2+'&favArtistStyleList3='+ctx.state.artistStyleList3+'&favArtistNote='+ctx.state.artistNote+'&favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId
         });
       } else {
-        fetch('https://glacial-sierra-22438.herokuapp.com/userdislikeartist', {
+        fetch('http://localhost:3000/userdislikeartist', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId

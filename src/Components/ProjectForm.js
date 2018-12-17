@@ -1,7 +1,6 @@
 //Alimente le modal envoyé au tatoueur depuis le UserPage/FavTattoosProfile et depuis TattooModal/TattooArtistCardModal
 
 import React from 'react';
-import url from '../config.js';
 
 //material UI
 import {Step, Stepper, StepLabel, StepContent} from 'material-ui/Stepper';
@@ -48,14 +47,14 @@ class ProjectForm extends React.Component {
   componentDidMount() {
     var ctx = this;
     //collecter les informations de l'artiste depuis la DB
-    fetch('https://glacial-sierra-22438.herokuapp.com/artist?artist_id=' + this.props.artistId)
+    fetch('http://localhost:3000/artist?artist_id=' + this.props.artistId)
     .then(function(response) {
       return response.json();
     })
     .then(function(data) {
       ctx.setState({
         artistName: data.result.artistNickname,
-        artistEmail: 'francois.fitzpatrick@gmail.com'
+        artistEmail: 'wguerrouani@gmail.com'
       });
     })
     .catch(function(error) {
@@ -70,7 +69,7 @@ class ProjectForm extends React.Component {
       })
     }
   }
-
+  //récupère de manière dynamique les valeurs enregistrées dans chaque [name]
   handleChange(event, index, value) {
     this.setState({
       [event.target.name]: event.target.value,
@@ -88,7 +87,7 @@ class ProjectForm extends React.Component {
     if (this.state.stepIndex >= 2) {
       var ctx = this;
       //fetch pour créer un nouveau lead et updater coté backend la DB User
-      fetch('https://glacial-sierra-22438.herokuapp.com/newlead', {
+      fetch('http://localhost:3000/newlead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -150,11 +149,7 @@ class ProjectForm extends React.Component {
   render() {
     const {
       finished,
-      stepIndex,
-      description,
-      phone,
-      availability,
-      value
+      stepIndex
     } = this.state;
 
     return (

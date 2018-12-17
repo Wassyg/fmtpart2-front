@@ -1,3 +1,5 @@
+//utilisé uniquement sur on utilise un Artiste Screen, donc pas pour le moment
+
 import React, { Component } from 'react';
 
 //Import des librairies ou composants de style

@@ -43,31 +43,31 @@ class NavBarEspacePerso extends Component {
   }
 
   render() {
-    let classNavbar = ["navbar-scrolled"];
-    let classLogoNav = ["logo-navbar-scrolled"];
-    let classNavBtn = ["nav-btn-scrolled"];
+    
     return (
-      <Navbar className={classNavbar.join(" ")}  dark expand="md">
+      <Navbar className="navbar-scrolled" dark expand="md">
         <NavbarBrand>
-          <strong id="top" className="logo-navbar">Find my Tattoo</strong>
+        <Link id="top" to={'/'}><strong className="logo-navbar-scrolled">Find my Tattoo</strong> </Link> 
         </NavbarBrand>
         <Button outline color="warning" onClick={()=>this.toggleAuth()}><FontAwesomeIcon icon={faUser} className="fa-lg"/></Button>
         <AuthForm clickOnForm={this.state.clickOnForm}/>
-      <p className="nav-btn">{this.props.user.userFirstName}</p>
+      <p className="nav-btn-scrolled">{this.props.user.userFirstName}</p>
         <NavbarToggler
           onClick={() => this.toggleCollapse()}
         />
-      <Collapse className="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+      <Collapse id="navbarCollapse3"
+            isOpen={this.state.isOpen}
+            navbar>
           <NavbarNav left>
 
           </NavbarNav>
 
           <NavbarNav right>
             <NavItem>
-              <Link className="nav-btn" to={'/'}>Galerie</Link>
+              <Link className="nav-btn-scrolled" to={'/'}>Galerie</Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-btn" to={'/UserPage'}>MoodBoard</Link>
+              <Link className="nav-btn-scrolled" to={'/UserPage'}>MoodBoard</Link>
             </NavItem>
             <NavItem>
 

@@ -1,16 +1,11 @@
 //Alimente UserPage
 
 import React from 'react';
-import {Card, CardTitle, CardImg, CardSubtitle, Button, Container, Row, Col} from 'reactstrap';
+//import {Card, CardTitle, CardImg, CardSubtitle, Button, Container, Row, Col} from 'reactstrap';
 
 import TattooArtistCardModal from '../Components/TattooArtistCardModal.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Stylesheets/FavArtistsProfile.css';
-import url from '../config.js';
-
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
 import {connect} from 'react-redux';
 
@@ -25,7 +20,7 @@ class FavArtistsProfile extends React.Component {
 
   componentDidMount() {
       var ctx = this;
-      fetch('https://glacial-sierra-22438.herokuapp.com'+"/user?user_id=" + this.props.userId)
+      fetch('http://localhost:3000/user?user_id=' + this.props.userId)
       .then(function(response) {
         return response.json();
       })
@@ -38,7 +33,6 @@ class FavArtistsProfile extends React.Component {
     }
 
   render() {
-    var artistsList = this.state.artistsList;
     var artistsDisplayedCards = this.state.artistsList.map(function(artist, i) {
       return <FavArtistCard
         key={i}
@@ -47,9 +41,9 @@ class FavArtistsProfile extends React.Component {
         artistCompanyName={artist.artistCompanyName}
         artistDescription={artist.artistDescription}
         artistAddress={artist.artistAddress}
-        artistStyleList1={artist.artistStyleList.join(",").split(",")[0]}
-        artistStyleList2={artist.artistStyleList.join(",").split(",")[1]}
-        artistStyleList3={artist.artistStyleList.join(",").split(",")[2]}
+        artistStyleList1={artist.artistStyleList.style1}
+        artistStyleList2={artist.artistStyleList.style2}
+        artistStyleList3={artist.artistStyleList.style3}
         artistID={artist._id}
       />
     })

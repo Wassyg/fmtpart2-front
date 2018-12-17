@@ -6,9 +6,6 @@ import {connect} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearchPlus } from '@fortawesome/free-solid-svg-icons';
 
-import TattooModal from '../Components/TattooModal.js';
-
-
 
 class CardTatoo extends Component {
   constructor(props) {

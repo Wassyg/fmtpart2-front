@@ -3,6 +3,7 @@ import {  } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../Stylesheets/GalleryPage.css'
 
+
 import HomePage from './HomePage.js'
 import NavBar from '../Components/NavBar.js';
 import CardTatoo from '../Components/CardTatoo.js';
@@ -13,12 +14,15 @@ class GalleryPage extends Component{
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = { collapse: false , pictureData:[]};
+    this.state = { 
+      collapse: false, 
+      pictureData:[]
+    };
   }
 
   componentDidMount(){
     var ctx = this;
-   fetch('https://glacial-sierra-22438.herokuapp.com/tattoos')
+   fetch('http://localhost:3000/tattoos')
    .then(function(response) {
      return response.json();
    })
@@ -27,9 +31,9 @@ class GalleryPage extends Component{
      data.map(function(map){
        pictureDataCopy.push(map)
      })
-
-     ctx.setState({ pictureData: pictureDataCopy});
-
+     ctx.setState({ 
+       pictureData: pictureDataCopy
+      });
    })
    .catch(function(error) {
      console.log('Request failed', error)
@@ -37,14 +41,15 @@ class GalleryPage extends Component{
  }
 
 
-
-
   toggle() {
-    this.setState({ collapse: !this.state.collapse });
+    this.setState({ 
+      collapse: !this.state.collapse 
+    });
   }
   render(){
-    // console.log("pour le format ID du tattoo ===>", this.state.pictureData);
+    // console.log("Je capte le back ?", this.state.pictureData);
 
+    //create a CardTattoo for each tattoo picture in mLab 
     let pictureList = this.state.pictureData.map(function(map, i){
       return <CardTatoo
         key={i}

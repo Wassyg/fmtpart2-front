@@ -2,11 +2,9 @@
 
 import React, { Component } from 'react'
 import {Tabs, Tab} from 'material-ui/Tabs';
-import Slider from 'material-ui/Slider';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FavTattoosProfile from '../Components/FavTattoosProfile.js'
 import FavArtistsProfile from '../Components/FavArtistsProfile.js'
-import ProjectForm from '../Components/ProjectForm.js'
 import '../Stylesheets/TabsProfile.css';
 
 class TabsProfile extends Component{
