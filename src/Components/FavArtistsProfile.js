@@ -20,12 +20,18 @@ class FavArtistsProfile extends React.Component {
 
   componentDidMount() {
       var ctx = this;
-      fetch('http://localhost:3000/user?user_id=' + this.props.userId)
+      fetch('http://localhost:3000/userFavArtists?user_id=' + ctx.props.userId)
       .then(function(response) {
         return response.json();
       })
       .then(function(data) {
-        ctx.setState({artistsList: data.result.userFavoriteArtist});
+        var artistsListCopy =[...ctx.state.artistsList];
+        var data = data.result;
+        data.map(function(favArtists){
+          artistsListCopy.push(favArtists);
+                 })
+        ctx.setState({artistsList: artistsListCopy});
+        console.log("artistsList 34",this.state.tattoosList);
       })
       .catch(function(error) {
         console.log('Request failed', error);
@@ -33,20 +39,23 @@ class FavArtistsProfile extends React.Component {
     }
 
   render() {
-    var artistsDisplayedCards = this.state.artistsList.map(function(artist, i) {
-      return <FavArtistCard
+    console.log("artistsList 42",this.state.tattoosList);
+    var {artistsList} = this.state;
+    var artistsDisplayedCards = artistsList.map(function(artist, i) {
+        return <FavArtistCard
         key={i}
         artistName={artist.artistNickname}
         artistImage={artist.artistPhotoLink}
         artistCompanyName={artist.artistCompanyName}
         artistDescription={artist.artistDescription}
         artistAddress={artist.artistAddress}
-        artistStyleList1={artist.artistStyleList.style1}
-        artistStyleList2={artist.artistStyleList.style2}
-        artistStyleList3={artist.artistStyleList.style3}
+        artistStyleList1={artist.artistStyleList[0].style1}
+        artistStyleList2={artist.artistStyleList[0].style2}
+        artistStyleList3={artist.artistStyleList[0].style3}
         artistID={artist._id}
       />
     })
+    //console.log("artistsDisplayedCards depuis FavArtistsProfile",artistsDisplayedCards)
     return (
       <div className="containerArtistProfile">
         <div className="row rowArtistProfile col-12">
@@ -91,7 +100,10 @@ class FavArtistCard extends React.Component {
 }
 
 function mapStateToProps(store) {
-  return { userId: store.user._id,
+  return { 
+    userId: store.user._id,
+    favArtistID: store.user.userFavoriteArtist,
+
   }
 }
 

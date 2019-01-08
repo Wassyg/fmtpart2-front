@@ -20,20 +20,21 @@ class FavTattoosProfile extends React.Component {
 
   componentDidMount() {
     var ctx= this;
-
-    fetch('http://localhost:3000/user?user_id='+this.props.userId)
+    fetch('http://localhost:3000/userFavTattoos?user_id='+this.props.userId)
     .then(function(response) {
      return response.json()
     })
     .then(function(data) {
+      console.log("28 data", data);
       var tattoosListCopy =[...ctx.state.tattoosList];
-      var userFavoriteTattoo = data.result.userFavoriteTattoo;
-      userFavoriteTattoo.map(function(favTattoos){
+      var data = data.result
+      data.map(function(favTattoos){
         tattoosListCopy.push(favTattoos);
                })
       ctx.setState({
         tattoosList : tattoosListCopy,
                })
+      console.log("tattoosList 36",this.state.tattoosList);
              })
     .catch(function(error) {
      console.log('Request failed', error);
@@ -42,9 +43,8 @@ class FavTattoosProfile extends React.Component {
 
 
   render() {
-        var tattoosList = this.state.tattoosList;
-        console.log("tattoosList==>",tattoosList)
-
+    console.log("tattoosList 45",this.state.tattoosList);
+        var {tattoosList} = this.state;
         var tattoosDisplayedCards = tattoosList.map(function(tattoo, i){
           return <CardTatoo
            key={i}

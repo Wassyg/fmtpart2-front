@@ -1,3 +1,5 @@
+//Chaque image qui contient un tatouage
+//reçoit des infos de TattooModal
 import React, { Component } from 'react';
 import '../Stylesheets/CardTatoo.css';
 import 'bootstrap/dist/css/bootstrap.min.css';

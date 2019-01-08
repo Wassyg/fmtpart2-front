@@ -119,7 +119,7 @@ class TattooArtistCardModal extends Component {
         fetch('http://localhost:3000/userlikeartist', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: 'favArtistNickname='+ctx.state.artistNickname+'&favArtistCompanyName='+ctx.state.artistCompanyName+'&favArtistAddress='+ctx.state.artistAddress+'&favArtistDescription='+ctx.state.artistDescription+'&favArtistPhotoLink='+ctx.state.artistPhotoLink+'&favArtistStyleList1='+ctx.state.artistStyleList1+'&favArtistStyleList2='+ctx.state.artistStyleList2+'&favArtistStyleList3='+ctx.state.artistStyleList3+'&favArtistNote='+ctx.state.artistNote+'&favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId
+        body: 'favArtistNickname='+ctx.state.artistNickname+'&favArtistCompanyName='+ctx.state.artistCompanyName+'&favArtistAddress='+ctx.state.artistAddress+'&favArtistDescription='+ctx.state.artistDescription+'&favArtistPhotoLink='+ctx.state.artistPhotoLink+'&favArtistStyleList1='+ctx.state.artistStyleList1+'&favArtistStyleList2='+ctx.state.artistStyleList2+'&favArtistStyleList3='+ctx.state.artistStyleList3+'&favArtistNote='+ctx.state.artistNote+'&favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId +'&userFirstName=' + ctx.props.userFirstName +'&userLastName=' + ctx.props.userLastName + '&userEmail=' + ctx.props.userEmail + '&userPassword='+ ctx.props.userPassword + '&userTelephone='+ ctx.props.userTelephone +'&userTattooDescription='+ ctx.props.userTattooDescription +'&userAvailability='+ ctx.props.userAvailability
         });
       } else {
         fetch('http://localhost:3000/userdislikeartist', {
@@ -182,6 +182,13 @@ class TattooArtistCardModal extends Component {
 function mapStateToProps(store) {
   return {
      userId: store.user._id,
+     userFirstName : store.user.userFirstName,
+     userLastName : store.user.userLastName,
+     userEmail : store.user.userEmail,
+     userPassword : store.user.userPassword,
+     userTelephone : store.user.userTelephone,
+     userTattooDescription : store.user.userTattooDescription,
+     userAvailability : store.user.userAvailability,
      dataModal: store.dataModal
   }
 }

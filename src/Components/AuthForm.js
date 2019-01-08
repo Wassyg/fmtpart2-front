@@ -96,8 +96,10 @@ class AuthForm extends React.Component {
         },
         body: 'userEmail=' + ctx.state.signInEmail + "&userPassword=" + ctx.state.signInPassword
       })
-      .then((response) => response.json())
+      .then((response) => response.json()
+      )
       .then((data) => {
+        console.log("data 102", data)
         if(data.signin === true){
           this.setState({
              modal: !ctx.state.modal,
@@ -118,6 +120,9 @@ class AuthForm extends React.Component {
     event.preventDefault();
   }
   render() {
+   
+    console.log("firstName", this.state.firstName, "signUpEmail", this.state.signUpEmail);
+
     return (
       <div>
         <Modal isOpen={this.state.modal} toggle={this.toggle}>

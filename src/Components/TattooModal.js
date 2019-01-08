@@ -1,4 +1,6 @@
-//contient CardTatoo de l'image clickée, TattooArtistCardModal de l'artiste de la photo et des CardTatoo de toutes les photos du même artiste
+//contient CardTatoo de l'image clickée, 
+//TattooArtistCardModal de l'artiste de la photo 
+//et des CardTatoo de toutes les photos du même artiste
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
@@ -9,13 +11,10 @@ import AuthForm from '../Components/AuthForm.js';
 
 //Import des librairies ou composants de style
 import '../Stylesheets/TattooModal.css';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {Container, Row, Col} from 'reactstrap';
-
 import 'antd/dist/antd.css';
 import { Modal } from 'antd';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
 
@@ -27,7 +26,6 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons'
 //   return found
 // }
 
-//// Composant modal qui affiche le tatouage agrandi, les infos tatoueurs et la galerie des tatouages du tatoueur en question ////
 
 class TattooModal extends Component {
   constructor(props) {
@@ -72,7 +70,7 @@ class TattooModal extends Component {
         fetch('http://localhost:3000/userliketattoo', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: 'favTattooPhotoLink='+ctx.props.dataModal.favTattooPhotoLink+'&favTattooStyleList1='+ctx.props.dataModal.favTattooStyleList[0]+'&favTattooStyleList2='+ctx.props.dataModal.favTattooStyleList[1]+'&favTattooStyleList3='+ctx.props.dataModal.favTattooStyleList[2]+'&favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId+'&favTattooID='+ctx.props.dataModal.favTattooID
+        body: 'user_id='+ctx.props.userId+'&favTattooID='+ctx.props.favTattooID
         });
         this.setState({classLike: !this.state.classLike});
 
@@ -80,11 +78,23 @@ class TattooModal extends Component {
         fetch('http://localhost:3000/userdisliketattoo', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
-        body: 'favTattooID='+ctx.props.dataModal.favTattooID+'&user_id='+ctx.props.userId
+        body: 'favTattooID='+ctx.props.favTattooID+'&user_id='+ctx.props.userId
         });
         this.setState({classLike: !this.state.classLike});
       }
     }
+   }
+
+   componentDidMount(props){
+      if(this.props.userId){
+       console.log("user is here 89");
+       this.props.userFavoriteTattoo.map(function(tattoo, i){
+         this.setState({
+          classLike : true
+         })
+       })
+       //console.log("this.props 89", this.props);
+      }
    }
 
   componentDidUpdate(prevProps){
@@ -105,12 +115,12 @@ class TattooModal extends Component {
     //   });
     // }
 
-    if (this.props.dataModal.clickOnTattoo!==prevProps.dataModal.clickOnTattoo && this.props.dataModal.clickOnTattoo===true) {
+    if (this.props.clickOnTattoo!==prevProps.clickOnTattoo && this.props.clickOnTattoo===true) {
       this.setState({
         visible : true,
       })
       // Récupération de la liste des tatouages du tatoueur en question
-      fetch('http://localhost:3000/tattoosfromartist?artistID='+ctx.props.dataModal.favArtistID)
+      fetch('http://localhost:3000/tattoosfromartist?artistID='+ctx.props.favArtistID)
       .then(function(response) {
        return response.json();
       })
@@ -127,9 +137,10 @@ class TattooModal extends Component {
       });
     }
   }
+  
 
   render() {
-    console.log('result reducer dataModal',this.props.dataModal);
+    console.log('result reducer dataModal',this.props);
 
     let pictureList = this.state.pictureData.map(function(map, i){
       return <CardTatoo
@@ -155,11 +166,11 @@ class TattooModal extends Component {
           <AuthForm clickOnForm={this.state.clickOnForm}/>
           <Row id="tattooImageAndArtistInfoBoxModal">
           <Col xs="12" md="7" id="tattooImageBoxModal">
-              <img src={this.props.dataModal.favTattooPhotoLink} id="tattooImageModal" alt=""/>
+              <img src={this.props.favTattooPhotoLink} id="tattooImageModal" alt=""/>
             <FontAwesomeIcon onClick={() => this.handleTattooLike(this.props)} icon={faHeart} className={this.state.classLike ? "tattooLikeModal tatoo-liked" : "tattooLikeModal"}/>
             </Col>
             <Col xs="12" md={{size: "5"}} >
-              <TattooArtistCardModal artistId={this.props.dataModal.favArtistID} />
+              <TattooArtistCardModal artistId={this.props.favArtistID} />
             </Col>
           </Row>
           <hr id="separationModal"/>
@@ -182,7 +193,7 @@ function mapDispatchToProps(dispatch) {
           favTattooPhotoLink:[],
           favArtistID:"",
           favTattooID:"",
-          favTattooStyleList:"",
+          favTattooStyleList:[],
          })
     }
   }
@@ -191,7 +202,20 @@ function mapDispatchToProps(dispatch) {
 function mapStateToProps(store) {
   return {
      userId: store.user._id,
-     dataModal: store.dataModal
+     userFirstName : store.user.userFirstName,
+     userLastName : store.user.userLastName,
+     userEmail : store.user.userEmail,
+     userFavoriteTattoo: store.user.userFavoriteTattoo,
+     userFavoriteArtist: store.user.userFavoriteArtist,
+     userPassword : store.user.userPassword,
+     userTelephone : store.user.userTelephone,
+     userTattooDescription : store.user.userTattooDescription,
+     userAvailability : store.user.userAvailability,
+     favTattooPhotoLink: store.dataModal.favTattooPhotoLink,
+     clickOnTattoo: store.dataModal.clickOnTattoo,
+     favArtistID: store.dataModal.favArtistID,
+     favTattooID: store.dataModal.favTattooID,
+     favTattooStyleList: store.dataModal.favTattooStyleList
   }
 }
 
