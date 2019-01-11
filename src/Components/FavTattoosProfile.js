@@ -45,7 +45,7 @@ class FavTattoosProfile extends React.Component {
   render() {
     console.log("tattoosList 45",this.state.tattoosList);
         var {tattoosList} = this.state;
-        var tattoosDisplayedCards = tattoosList.map(function(tattoo, i){
+        var pictureList = tattoosList.map(function(tattoo, i){
           return <CardTatoo
            key={i}
            artistID={tattoo.artistID}
@@ -57,7 +57,7 @@ class FavTattoosProfile extends React.Component {
     return (
       <div className="containerTattoosProfile">
           <div className="row rowTattoosProfile col-12">
-          {tattoosDisplayedCards}
+          {pictureList}
           </div>
       </div>
     )

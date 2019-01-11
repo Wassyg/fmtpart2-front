@@ -190,6 +190,7 @@ function mapStateToProps(store) {
      userTattooDescription : store.user.userTattooDescription,
      userAvailability : store.user.userAvailability,
      dataModal: store.dataModal
+     
   }
 }
 

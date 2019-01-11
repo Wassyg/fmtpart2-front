@@ -88,11 +88,11 @@ class TattooModal extends Component {
    componentDidMount(props){
       if(this.props.userId){
        console.log("user is here 89");
-       this.props.userFavoriteTattoo.map(function(tattoo, i){
-         this.setState({
-          classLike : true
-         })
-       })
+      //  this.props.userFavoriteTattoo.map(function(tattoo, i){
+      //    this.setState({
+      //     classLike : true
+      //    })
+      //  })
        //console.log("this.props 89", this.props);
       }
    }
