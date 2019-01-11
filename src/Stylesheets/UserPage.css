@@ -1,0 +1,32 @@
+.userPage-container-fluid{
+ height: 130vh !important;
+ width: 100vw;
+ background-image: url(../Assets/backgrounds/tattoowheats.jpg);
+ background-size: cover;
+ background-position: center;
+  }
+  .mainContainer{
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  display: flex;
+  justify-content:center;
+}
+
+.topContainer{
+  width: 100vw;
+  height: 80vh;
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  position: relative;
+}
+.row-topFormTattoos{
+  position: relative;
+}
+
+/* .lowContainer{
+  width: 100vw;
+  height: 100px;
+  position: static;
+} */

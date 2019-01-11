@@ -1,0 +1,49 @@
+/* paramètre de la navbar */
+.Navbar{
+  position: fixed;
+  width: 100vw;
+  min-height: 10vh;
+  background-color:#596275 0;
+  color: #fff;
+  top: 0;
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+}
+/* logo de la navbar */
+.logo-navbar{
+  font-family: "Lobster Two";
+  font-size: 30px;
+  color: #596275;
+}
+
+/* boutons navigation de la navbar */
+.nav-btn{
+  color: #596275;
+  font-size: 20px;
+  margin: 15px;
+}
+
+/* boutons sign in/up de la navbar */
+.nav-sign{
+color: #fff
+}
+
+
+/* si la navbar est en dessous des 50 */
+.navbar-scrolled{
+  width: 100vw;
+  min-height: 10vh;
+  background-color: #596275;
+  color: #fff;
+  z-index: 1;
+  }
+.logo-navbar-scrolled{
+font-family: "Lobster Two";
+font-size: 30px;
+color: #fff;
+}
+.nav-btn-scrolled{
+color: #fff;
+font-size: 20px;
+margin: 15px;
+  }

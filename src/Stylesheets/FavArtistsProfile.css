@@ -1,0 +1,19 @@
+.containerArtistProfile{
+overflow: scroll;
+height: 100vh;
+background-color: #F7F7F790;
+font-family: 'Roboto Condensed';
+}
+
+.rowArtistProfile{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+.tattooArtistCardProfile{
+  
+}

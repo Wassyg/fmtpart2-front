@@ -1,0 +1,48 @@
+
+#tattooImageAndArtistInfoBoxModal{
+  align-items: flex-start;
+}
+
+#tattooImageBoxModal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#tattooImageModal{
+  width: 60%;
+  height: 60%;
+  box-shadow: 10px;
+}
+
+.tattooLikeModal{
+  position: absolute;
+  top: 0px;
+  right: 40px;
+  width: 30px !important;
+  height: 30px !important;
+}
+
+.tattoo-liked{
+  color: red;
+}
+
+.tattoo-disliked {
+  color: lightgrey;
+}
+
+
+#separationModal{
+  margin-top: 30px;
+  margin-bottom: 20px;
+}
+
+#otherArtistImagesBoxModal{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: auto;
+  white-space: nowrap;
+}
