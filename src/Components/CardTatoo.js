@@ -1,6 +1,5 @@
 //Chaque image qui contient un tatouage
 //reçoit des infos de TattooModal
-//reçoit des infos de FavTattoosProfile à partir de la page User
 import React, { Component } from 'react';
 import '../Stylesheets/CardTatoo.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -26,7 +25,7 @@ class CardTatoo extends Component {
     let propsModal = {...props};
     propsModal.isOpen = true;
     this.props.openModalClick(propsModal);
-    console.log("propsModal", propsModal);
+    console.log(propsModal);
   }
 
   render(){

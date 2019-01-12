@@ -15,8 +15,8 @@ class GalleryPage extends Component{
   constructor(props) {
     super(props);
     this.toggle = this.toggle.bind(this);
-    this.state = { 
-      collapse: false, 
+    this.state = {
+      collapse: false,
       pictureData:[],
       artistData:[]
     };
@@ -35,7 +35,7 @@ class GalleryPage extends Component{
     data.map(function(map){
       artistsDataCopy.push(map)
     })
-    ctx.setState({ 
+    ctx.setState({
       artistData: artistsDataCopy
      });
    })
@@ -53,7 +53,7 @@ class GalleryPage extends Component{
      data.map(function(map){
        pictureDataCopy.push(map)
      })
-     ctx.setState({ 
+     ctx.setState({
        pictureData: pictureDataCopy
       });
    })
@@ -63,21 +63,22 @@ class GalleryPage extends Component{
  }
 
   toggle() {
-    this.setState({ 
-      collapse: !this.state.collapse 
+    this.setState({
+      collapse: !this.state.collapse
     });
   }
   render(){
     //console.log("artistData fetch depuis Galerie", this.state.artistData);
 
-    //create a CardTattoo for each tattoo picture in mLab 
-    let pictureList = this.state.pictureData.map(function(map, i){
+    //create a CardTattoo for each tattoo picture in mLab
+    let pictureList = this.state.pictureData.map(function(tattoo, i){
       return <CardTatoo
         key={i}
-        tattooId={map._id}
-        tattooPhotoLink={map.tattooPhotoLink}
-        artistId={map.artistID}
-        tattooStyleList={map.tattooStyleList}  />
+        tattooId={tattoo._id}
+        tattooPhotoLink={tattoo.tattooPhotoLink}
+        artistId={tattoo.artistID}
+        tattooStyleList={tattoo.tattooStyleList}
+      />
     })
     return(
       <div>
@@ -96,13 +97,13 @@ class GalleryPage extends Component{
 
 function mapDispatchToProps(dispatch) {
   return {
-    collectedArtists: function() { 
+    collectedArtists: function() {
         dispatch( {
           type: 'fetchArtists',
           artistData: this.state.artistData
-      } ) 
+      } )
     }}}
 
 export default connect(
-    null, 
+    null,
     mapDispatchToProps)(GalleryPage);

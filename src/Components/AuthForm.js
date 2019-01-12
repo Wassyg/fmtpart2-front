@@ -120,7 +120,6 @@ class AuthForm extends React.Component {
     event.preventDefault();
   }
   render() {
-   
     console.log("firstName", this.state.firstName, "signUpEmail", this.state.signUpEmail);
 
     return (

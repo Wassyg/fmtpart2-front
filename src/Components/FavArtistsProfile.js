@@ -31,7 +31,7 @@ class FavArtistsProfile extends React.Component {
           artistsListCopy.push(favArtists);
                  })
         ctx.setState({artistsList: artistsListCopy});
-        console.log("artistsList 34",this.state.tattoosList);
+        console.log("artistsList 34",ctx.state.tattoosList);
       })
       .catch(function(error) {
         console.log('Request failed', error);
@@ -44,8 +44,8 @@ class FavArtistsProfile extends React.Component {
     var artistsDisplayedCards = artistsList.map(function(artist, i) {
         return <FavArtistCard
         key={i}
-        artistName={artist.artistNickname}
-        artistImage={artist.artistPhotoLink}
+        artistNickname={artist.artistNickname}
+        artistPhotoLink={artist.artistPhotoLink}
         artistCompanyName={artist.artistCompanyName}
         artistDescription={artist.artistDescription}
         artistAddress={artist.artistAddress}
@@ -66,33 +66,20 @@ class FavArtistsProfile extends React.Component {
 }
 
 class FavArtistCard extends React.Component {
-  constructor(props){
-    super(props);
-    this.state ={
-      artistName : this.props.artistName,
-      artistImage : this.props.artistImage,
-      artistCompanyName : this.props.artistCompanyName,
-      artistDescription : this.props.artistDescription,
-      artistAddress : this.props.artistAddress,
-      artistStyleList1 : this.props.artistStyleList1,
-      artistStyleList2 : this.props.artistStyleList2,
-      artistStyleList3 : this.props.artistStyleList3,
-      artistID : this.props.artistID
-    }
-  }
   render() {
     return (
           <div className="tattooArtistCardProfile col-12 col-sm-6 col-md-4" style={{padding:5, height:400, minWidth:310}} >
             <TattooArtistCardModal
-              artistNickname = {this.state.artistName}
-              artistPhotoLink = {this.state.artistImage}
-              artistCompanyName = {this.state.artistCompanyName}
-              artistDescription = {this.state.artistDescription}
-              artistAddress = {this.state.artistAddress}
-              artistStyleList1 = {this.state.artistStyleList1}
-              artistStyleList2 = {this.state.artistStyleList2}
-              artistStyleList3 = {this.state.artistStyleList3}
-              artistID = {this.state.artistID}
+            screenProfile = {true}
+              artistNickname = {this.props.artistNickname}
+              artistPhotoLink = {this.props.artistPhotoLink}
+              artistCompanyName = {this.props.artistCompanyName}
+              artistDescription = {this.props.artistDescription}
+              artistAddress = {this.props.artistAddress}
+              artistStyleList1 = {this.props.artistStyleList1}
+              artistStyleList2 = {this.props.artistStyleList2}
+              artistStyleList3 = {this.props.artistStyleList3}
+              artistID = {this.props.artistID}
             />
           </div>
     );
@@ -100,7 +87,7 @@ class FavArtistCard extends React.Component {
 }
 
 function mapStateToProps(store) {
-  return { 
+  return {
     userId: store.user._id,
     favArtistID: store.user.userFavoriteArtist,
 

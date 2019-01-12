@@ -67,7 +67,7 @@ class NavBarEspacePerso extends Component {
               <Link className="nav-btn-scrolled" to={'/'}>Galerie</Link>
             </NavItem>
             <NavItem>
-              <Link className="nav-btn-scrolled" to={'/UserPage'}>MoodBoard</Link>
+              <Link className="nav-btn-scrolled" to={'/UserPage'}>Espace Perso</Link>
             </NavItem>
             <NavItem>
 

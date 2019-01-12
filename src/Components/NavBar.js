@@ -94,7 +94,7 @@ class NavbarPage extends Component {
               
             </NavItem>
             <NavItem>
-              <Link className={classNavBtn.join(" ")} to={this.props.user._id ?"/UserPage#top" :"/"} onClick={()=>this.handleClick()}>Espace Perso</Link>
+              <Link className={classNavBtn.join(" ")} to={this.props.user._id ?"/UserPage" :"/"} onClick={()=>this.handleClick()}>Espace Perso</Link>
             </NavItem>
 
           </NavbarNav>

@@ -23,8 +23,12 @@
   height: 30px !important;
 }
 
-.tatoo-liked{
+.tattoo-liked{
   color: red;
+}
+
+.tattoo-disliked {
+  color: lightgrey;
 }
 
 

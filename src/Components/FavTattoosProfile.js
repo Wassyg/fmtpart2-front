@@ -9,6 +9,9 @@ import CardTatoo from '../Components/CardTatoo.js';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Stylesheets/FavTattoosProfile.css';
 
+import TattooModal from './TattooModal';
+
+
 class FavTattoosProfile extends React.Component {
   constructor(props) {
     super(props);
@@ -30,12 +33,9 @@ class FavTattoosProfile extends React.Component {
       var data = data.result
       data.map(function(favTattoos){
         tattoosListCopy.push(favTattoos);
-               })
-      ctx.setState({
-        tattoosList : tattoosListCopy,
-               })
-      console.log("tattoosList 36",this.state.tattoosList);
-             })
+      })
+      ctx.setState({tattoosList : tattoosListCopy,})
+    })
     .catch(function(error) {
      console.log('Request failed', error);
    });
@@ -43,21 +43,21 @@ class FavTattoosProfile extends React.Component {
 
 
   render() {
-    console.log("tattoosList 45",this.state.tattoosList);
         var {tattoosList} = this.state;
-        var pictureList = tattoosList.map(function(tattoo, i){
+        var tattoosDisplayedCards = tattoosList.map(function(tattoo, i){
           return <CardTatoo
-           key={i}
-           artistID={tattoo.artistID}
-           tattooPhotoLink={tattoo.tattooPhotoLink}
-           tattooStyleList={tattoo.tattooStyleList}
-           tattooPhotoID={tattoo.tattooPhotoID}
-         />
+             key={i}
+             artistId={tattoo.artistID}
+             tattooPhotoLink={tattoo.tattooPhotoLink}
+             tattooStyleList={tattoo.tattooStyleList}
+             tattooId={tattoo._id}
+          />
        })
     return (
       <div className="containerTattoosProfile">
           <div className="row rowTattoosProfile col-12">
-          {pictureList}
+          <TattooModal/>
+          {tattoosDisplayedCards}
           </div>
       </div>
     )
