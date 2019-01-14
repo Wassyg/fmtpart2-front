@@ -17,6 +17,7 @@ import 'antd/dist/antd.css';
 import { Modal } from 'antd';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart } from '@fortawesome/free-solid-svg-icons'
+import urlBackend from '../config.js';
 
 // function checkAndAdd(idTattoo, array) {
 //   var found = array.some(function (el) {
@@ -70,7 +71,7 @@ class TattooModal extends Component {
     }else{
       var ctx = this;
       if(!this.state.like){
-        fetch('http://localhost:3000/userliketattoo', {
+        fetch(urlBackend+'/userliketattoo', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'user_id='+ctx.props.userId+'&favTattooID='+ctx.props.favTattooID
@@ -78,7 +79,7 @@ class TattooModal extends Component {
         this.setState({like: true})
 
       } else {
-        fetch('http://localhost:3000/userdisliketattoo', {
+        fetch(urlBackend+'/userdisliketattoo', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favTattooID='+ctx.props.favTattooID+'&user_id='+ctx.props.userId
@@ -107,7 +108,7 @@ class TattooModal extends Component {
     var ctx = this;
     // if(this.props.userId){
     //   console.log("didupdate",this.props.dataModal);
-    //   fetch('http://localhost:3000/user?user_id='+this.props.userId)
+    //   fetch(urlBackend+'/user?user_id='+this.props.userId)
     //   .then(function(response) {
     //    return response.json();
     //   })

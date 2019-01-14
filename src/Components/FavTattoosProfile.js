@@ -8,6 +8,7 @@ import CardTatoo from '../Components/CardTatoo.js';
 
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Stylesheets/FavTattoosProfile.css';
+import urlBackend from '../config.js';
 
 import TattooModal from './TattooModal';
 
@@ -23,7 +24,7 @@ class FavTattoosProfile extends React.Component {
 
   componentDidMount() {
     var ctx= this;
-    fetch('http://localhost:3000/userFavTattoos?user_id='+this.props.userId)
+    fetch(urlBackend+'/userFavTattoos?user_id='+this.props.userId)
     .then(function(response) {
      return response.json()
     })

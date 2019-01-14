@@ -12,6 +12,7 @@ import AuthForm from '../Components/AuthForm.js';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faMapMarkerAlt, faHeart, faEnvelope, faTimesCircle } from '@fortawesome/free-solid-svg-icons'
+import urlBackend from '../config';
 
 
 class TattooArtistCardModal extends Component {
@@ -54,7 +55,7 @@ class TattooArtistCardModal extends Component {
 //grace au reducer récupérer l'ID de l'artiste pour fetcher ses informations
   componentDidMount(){
     var ctx = this;
-    fetch('http://localhost:3000/artist?artist_id='+ this.props.dataModal.favArtistID)
+    fetch(urlBackend+'/artist?artist_id='+ this.props.dataModal.favArtistID)
     .then(function(response) {
       return response.json();
     })
@@ -77,13 +78,12 @@ class TattooArtistCardModal extends Component {
       console.log('Request failed', error);
     });
 
-    console.log('JE SUIS DANS LE COMPONENT DID MOUNT', this.props);
   }
 
   componentDidUpdate(prevProps){
     if (this.props.dataModal.clickOnTattoo!==prevProps.dataModal.clickOnTattoo && this.props.dataModal.clickOnTattoo=== true){
       var ctx = this;
-      fetch('http://localhost:3000/artist?artist_id='+this.props.dataModal.favArtistID)
+      fetch(urlBackend+'/artist?artist_id='+this.props.dataModal.favArtistID)
       .then(function(response) {
         return response.json();
       })
@@ -106,7 +106,7 @@ class TattooArtistCardModal extends Component {
       });
 
       // recupère la liste des artistes likés !! (prend en compte les dislike tattoo)
-      fetch('http://localhost:3000/user?user_id='+this.props.userId)
+      fetch(urlBackend+'/user?user_id='+this.props.userId)
       .then(function(response) {
         return response.json();
       })
@@ -140,14 +140,14 @@ class TattooArtistCardModal extends Component {
     }else{
       var ctx = this;
       if(!this.state.like){
-        fetch('http://localhost:3000/userlikeartist', {
+        fetch(urlBackend+'/userlikeartist', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId
         });
         ctx.setState({like: true})
       } else {
-        fetch('http://localhost:3000/userdislikeartist', {
+        fetch(urlBackend+'/userdislikeartist', {
         method: 'PUT',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: 'favArtistID='+ctx.props.dataModal.favArtistID+'&user_id='+ctx.props.userId

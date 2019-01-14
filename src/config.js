@@ -1,4 +1,6 @@
 var urlLocal = "http://localhost:3000";
-var urlHeroku = "https://glacial-sierra-22438.herokuapp.com";
+var urlAws = "http://18.194.131.211:3000";
 
-var url = urlLocal;
+var urlBackend = (process.env.NODE_ENV == "development")? urlLocal :urlAws;
+
+export default urlBackend;

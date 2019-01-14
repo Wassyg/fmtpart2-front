@@ -5,7 +5,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Col, Row, Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody, Alert } from 'reactstrap';
 import '../Stylesheets/SignUpAndInForm.css';
 
-import {  } from '@fortawesome/free-solid-svg-icons'
+import {  } from '@fortawesome/free-solid-svg-icons';
+import urlBackend from '../config.js';
 
 import {connect} from 'react-redux';
 
@@ -59,7 +60,7 @@ class AuthForm extends React.Component {
   //Method to create user in database
   handleSignUp(event) {
     var ctx = this;
-    fetch('http://localhost:3000/signup', {
+    fetch(urlBackend+'/signup', {
         method: 'POST',
         headers: {'Content-Type':'application/x-www-form-urlencoded'},
         body: "userFirstName=" + ctx.state.firstName + "&userLastName=" + ctx.state.lastName + "&userEmail=" + ctx.state.signUpEmail + "&userPassword=" + ctx.state.signUpPassword
@@ -89,7 +90,7 @@ class AuthForm extends React.Component {
   //Method to check if user is in database
   handleSignIn(event) {
     var ctx = this;
-    fetch('http://localhost:3000/signin', {
+    fetch(urlBackend+'/signin', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

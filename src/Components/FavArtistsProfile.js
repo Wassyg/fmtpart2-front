@@ -7,6 +7,8 @@ import TattooArtistCardModal from '../Components/TattooArtistCardModal.js'
 import 'bootstrap/dist/css/bootstrap.css';
 import '../Stylesheets/FavArtistsProfile.css';
 
+import urlBackend from '../config.js';
+
 import {connect} from 'react-redux';
 
 
@@ -20,7 +22,7 @@ class FavArtistsProfile extends React.Component {
 
   componentDidMount() {
       var ctx = this;
-      fetch('http://localhost:3000/userFavArtists?user_id=' + ctx.props.userId)
+      fetch(urlBackend+'/userFavArtists?user_id=' + ctx.props.userId)
       .then(function(response) {
         return response.json();
       })

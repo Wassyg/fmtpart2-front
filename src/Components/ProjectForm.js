@@ -17,6 +17,7 @@ import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
 
 import {connect} from 'react-redux';
+import urlBackend from '../config';
 
 class ProjectForm extends React.Component {
   constructor(props) {
@@ -47,7 +48,7 @@ class ProjectForm extends React.Component {
   componentDidMount() {
     var ctx = this;
     //collecter les informations de l'artiste depuis la DB
-    fetch('http://localhost:3000/artist?artist_id=' + this.props.artistId)
+    fetch(urlBackend+'/artist?artist_id=' + this.props.artistId)
     .then(function(response) {
       return response.json();
     })
@@ -87,7 +88,7 @@ class ProjectForm extends React.Component {
     if (this.state.stepIndex >= 2) {
       var ctx = this;
       //fetch pour créer un nouveau lead et updater coté backend la DB User
-      fetch('http://localhost:3000/newlead', {
+      fetch(urlBackend+'/newlead', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded'

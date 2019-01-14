@@ -9,6 +9,7 @@ import HomePage from './HomePage.js'
 import NavBar from '../Components/NavBar.js';
 import CardTatoo from '../Components/CardTatoo.js';
 import TattooModal from '../Components/TattooModal.js';
+import urlBackend from '../config.js';
 
 
 class GalleryPage extends Component{
@@ -26,7 +27,7 @@ class GalleryPage extends Component{
     var ctx = this;
 
     //collecter les artists pour les stocker dans Redux
-   fetch('http://localhost:3000/artists')
+   fetch(urlBackend+'/artists')
    .then(function(response){
     return response.json();
    })
@@ -44,7 +45,7 @@ class GalleryPage extends Component{
    })
 
    // collecter les photos pour les stocker sur Redux et pour les afficher dans la galerie
-   fetch('http://localhost:3000/tattoos')
+   fetch(urlBackend+'/tattoos')
    .then(function(response) {
      return response.json();
    })
