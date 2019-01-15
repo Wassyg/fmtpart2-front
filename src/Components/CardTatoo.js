@@ -35,6 +35,7 @@ class CardTatoo extends Component {
           <img className="img-tatoo" src={this.props.tattooPhotoLink}/>
           <div className="card-hover">
             <FontAwesomeIcon className="hover-search" icon={faSearchPlus} />
+            <p>En savoir plus ...</p>
           </div>
         </div>
       </div>
